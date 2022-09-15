@@ -29,8 +29,8 @@ io.on('connection', (socket,userID) => {
 
 });
 
-http.listen(3001, function(){
+http.listen(3005, function(){
 
-  console.log('listening on 3001.....');
+  console.log('listening on 3005.....');
 
 });
