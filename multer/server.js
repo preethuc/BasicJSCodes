@@ -8,7 +8,7 @@ const fileStorageEngine = multer.diskStorage({
         cb(null,'./images');    
     },
     filename: (req,file,cb) => {
-        cb(null , Date.now() + file.originalname);   
+        cb(null ,  file.originalname);   
     }
 });
 
@@ -22,7 +22,7 @@ app.post('/api/single',upload.single('image'),(req,res)=>{
     res.send('single file upload success')
 })
 //multiple images
-app.post('/api/multiple',upload.array('images', 3),(req,res)=>{
+app.post('/api/multiple',upload.array('images',2 ),(req,res)=>{
     console.log(req.files);
     res.send('multiple file upload success')
 })
