@@ -1,5 +1,6 @@
 const path = require("path");
 const express = require("express");
+const { Socket } = require("socket.io");
 const app = express();
 const http = require("http").Server(app);
 //attach http server to the Socket.io
@@ -12,23 +13,22 @@ app.get("/", (req, res) => {
 });
 
 //create a new connection
-io.on("connection", (socket,userid) => {
+io.on("connection", (socket) => {
   console.log('A user Connected ');
- userid = Math.floor(Math.random() * 10000)
-  console.log(userid);
+  socket.id = Math.floor(Math.random() * 10000)
+  // console.log(socketid);
   console.log(socket.id);
 
-  socket.on('disconnect',()=>{
+  socket.on('disconnect', () => {
     console.log('A user disconnected');
-})
-socket.on('message',(msg)=>{
-    console.log('client msg:' + msg);
-})
-socket.on('server',(msg)=>{
-    console.log(msg);
   })
-})
+  socket.on('message', (msg) => {
+    console.log('client msg:' + msg);
+  })
+  socket.emit('server','receiving from server')
 
+
+})
 const port = process.env.PORT || 3000;
 http.listen(port, () => {
   console.log(`Server running on the port ${port}`);
