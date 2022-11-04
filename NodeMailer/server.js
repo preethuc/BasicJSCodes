@@ -15,10 +15,11 @@ const details = {
   text: "nodemailer file"
 };
 
-sender.sendMail(details, (err) => {
+sender.sendMail(details, (err,data) => {
   if (err) {
     console.log("error", err);
   } else {
     console.log("email sent...!");
+    console.log(data);
   }
 });

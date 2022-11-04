@@ -21,11 +21,14 @@ app.post('/',(req,res)=>{
                 error:err
             })
         }
+        else {
+            res.status(200).json({
+                status:'success',
+                message:"it's OK...!"
+            })
+        }
   })
-    res.status(200).json({
-        status:'success',
-        message:"it's OK...!"
-    })
+    
 });
 
 app.listen(3000);
